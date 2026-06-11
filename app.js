@@ -1,9 +1,14 @@
-import { buscarUsuario } from "./metodos.js";
+import { buscarUsuario, mostrar } from "./metodos.js";
 
 const inputuUsername = document.querySelector("#username");
 const botonBuscar = document.querySelector("#buscar");
 const loading = document.querySelector("#loading");
 export const resultado = document.querySelector("#resultado");
 
-const usuario = "josueOrt1z"
-buscarUsuario(usuario)
+
+
+botonBuscar.addEventListener("click", ()=>{
+    const usuario = inputuUsername.value;
+    buscarUsuario(loading, resultado, usuario);
+   
+})

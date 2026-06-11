@@ -93,3 +93,6 @@ button:hover {
     margin-bottom: .3rem;
 }
 
+.ocultar{
+    display: none;
+}
