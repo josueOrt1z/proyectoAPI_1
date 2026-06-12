@@ -73,8 +73,16 @@ button:hover {
     font-weight: bold;
 }
 
-#resultado {
+#resultado,
+#repos {
     margin-top: 1.5rem;
+}
+#repos ul {
+    text-align: center;
+}
+
+#repos li{
+    list-style: none;
 }
 
 #resultado img {
@@ -88,7 +96,8 @@ button:hover {
     margin-bottom: .5rem;
 }
 
-#resultado p {
+#resultado p,
+#repos p {
     color: #c9d1d9;
     margin-bottom: .3rem;
 }
