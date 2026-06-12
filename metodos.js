@@ -1,7 +1,4 @@
 
-
-let usuarioActual = null;
-
 export function buscarUsuario (loading, resultado, usuario){
     loading.textContent = "Cargando"
     let usuarioABuscar = fetch(`https://api.github.com/users/${usuario}`)
@@ -12,25 +9,25 @@ export function buscarUsuario (loading, resultado, usuario){
         else {
             return result.json();//las promesas en {} deben llevar return
         }})
-        .then(usuario => {usuarioActual = usuario
-            console.log(usuarioActual)
-            return mostrar(resultado)})//se llama adentro para evitar que se cargue el null
-        .catch(error => console.log (error))
+        .then(usuario => mostrar(null, resultado, usuario))//se llama adentro para evitar que se cargue el null
+        .catch(error => mostrar(error, resultado, null))
         .finally(()=>loading.textContent = "")
     }
 
-export function mostrar (contenedor){
-    if (usuarioActual){
+export function mostrar (error, contenedor, usuario){
+    if (usuario){
         const perfil =
-           `<img src="${usuarioActual.avatar_url}"></img>
-            <h1> ${usuarioActual.login}</h1>       
-            <p>Seguidores: ${usuarioActual.followers} </p>
-            <p>Repositorios publicos: ${usuarioActual.public_repos}</p>`
+           `<img src="${usuario.avatar_url}"></img>
+            <h1> ${usuario.login}</h1>       
+            <p>Seguidores: ${usuario.followers} </p>
+            <p>Repositorios publicos: ${usuario.public_repos}</p>`
         contenedor.innerHTML = perfil
         }
         else {
-            contenedor.textContent = "Usuario no encontrado"
+            contenedor.textContent = error.message
         }
+            
+            
 }
 
 function mostrarElemento(elemento){
